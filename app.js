@@ -114,7 +114,7 @@ function gate(mode, uid) {
   const VIEWS = {
     setup: '<h3>أكمل الإعداد أولًا</h3><p>ضع بيانات مشروع Firebase في ملف firebase-config.js كما في ملف README.</p>',
     signin: '<h3>ابدأ التحدي</h3><p>سجّل الدخول بحساب Google لتسجيل وردك ومقارنته بصديقك.</p><button type="button" class="gate-btn" id="signin">تسجيل الدخول بحساب Google</button>',
-    denied: `<h3>هذا الحساب غير مضاف</h3><p>أضف هذا المعرف إلى قواعد Firestore كما في ملف README، ثم أعد فتح الصفحة:</p><p id="uid">${uid}</p><button type="button" class="gate-btn" id="signout2">تسجيل الخروج</button>`,
+    denied: `<h3>هذا الحساب غير مضاف بعد</h3><p>أرسل الرمز التالي لصاحب التحدي ليضيفك، ثم أعد فتح الصفحة:</p><p id="uid">${uid}</p><button type="button" class="gate-btn" id="copyuid">نسخ الرمز</button><button type="button" class="gate-btn" id="signout2">تسجيل الخروج</button>`,
     error: '<h3>تعذر تحميل البيانات</h3><p>تحقق من الاتصال ثم أعد فتح الصفحة.</p>',
   };
   $('gate').innerHTML = VIEWS[mode];
@@ -139,6 +139,7 @@ document.addEventListener('click', async (e) => {
     catch (err) { if (err.code !== 'auth/popup-closed-by-user' && err.code !== 'auth/cancelled-popup-request') toast('تعذر تسجيل الدخول. تأكد من السماح بالنوافذ المنبثقة وحاول مرة أخرى.'); }
     return;
   }
+  if (b.id === 'copyuid') return void navigator.clipboard.writeText(me).then(() => toast('تم نسخ الرمز. أرسله لصاحب التحدي.'), () => toast('تعذر النسخ. اضغط على الرمز مطولًا لنسخه.'));
   if (b.id === 'signout' || b.id === 'signout2') return void signOut(auth);
   if (b.id === 'install') { installPrompt?.prompt(); b.hidden = true; return; }
   if (b.id === 'fajr') {
