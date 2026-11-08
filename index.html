@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ميزان الليل</title>
+<meta name="description" content="تحدي القرآن وقيام الليل والفجر في المسجد">
+<meta name="theme-color" content="#2A170D">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Cairo:wght@400;700&family=El+Messiri:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="lattice"></div>
+<main>
+  <header><h1>ميزان الليل</h1><p class="date" id="date"></p></header>
+
+  <section class="board" id="gate"></section>
+
+  <div id="home" class="stack" hidden>
+    <div class="disc" id="dial"></div>
+    <p class="legend"><span><i class="c-you"></i>حصتك</span><span><i class="c-friend"></i>حصة صديقك</span></p>
+
+    <div class="tabs" role="group" aria-label="الفترة">
+      <button type="button" data-period="day" aria-pressed="true">اليوم</button>
+      <button type="button" data-period="week" aria-pressed="false">الأسبوع</button>
+      <button type="button" data-period="month" aria-pressed="false">الشهر</button>
+      <button type="button" data-period="all" aria-pressed="false">كل الأيام</button>
+    </div>
+
+    <div class="stack" id="rows"></div>
+
+    <section class="board"><h3>الختمة</h3><div class="kh-grid" id="kh"></div></section>
+
+    <section class="board">
+      <h3>سجل اليوم</h3>
+      <div class="tabs" role="group" aria-label="اليوم المسجل">
+        <button type="button" data-offset="0" aria-pressed="true">اليوم</button>
+        <button type="button" data-offset="1" aria-pressed="false">أمس</button>
+      </div>
+      <p class="entry-date" id="entryDate"></p>
+      <div class="entry">
+        <div class="field">
+          <label for="pages">القرآن<small>صفحات</small></label>
+          <div class="stepper"><button type="button" data-step="pages,1" aria-label="زيادة الصفحات">+</button><input id="pages" inputmode="numeric" autocomplete="off"><button type="button" data-step="pages,-1" aria-label="إنقاص الصفحات">−</button></div>
+        </div>
+        <div class="field">
+          <label for="rakat">قيام الليل<small>ركعات</small></label>
+          <div class="stepper"><button type="button" data-step="rakat,1" aria-label="زيادة الركعات">+</button><input id="rakat" inputmode="numeric" autocomplete="off"><button type="button" data-step="rakat,-1" aria-label="إنقاص الركعات">−</button></div>
+        </div>
+        <button type="button" class="fajr" id="fajr" aria-pressed="false">صليت الفجر في المسجد</button>
+      </div>
+    </section>
+
+    <section class="board">
+      <div class="tabs" role="group" aria-label="نوع النص">
+        <button type="button" data-kind="ayat" aria-pressed="true">آيات</button>
+        <button type="button" data-kind="hadith" aria-pressed="false">أحاديث</button>
+        <button type="button" data-kind="quotes" aria-pressed="false">أقوال</button>
+      </div>
+      <figure class="slot words" id="words"></figure>
+      <div class="browse">
+        <button type="button" data-browse="-1">السابق</button>
+        <button type="button" data-browse="1">التالي</button>
+      </div>
+    </section>
+
+    <footer>
+      <button type="button" id="install" hidden>تثبيت التطبيق على الهاتف</button>
+      <button type="button" id="signout">تسجيل الخروج</button>
+    </footer>
+  </div>
+</main>
+<p class="toast" id="toast" role="status" hidden></p>
+<script type="module" src="app.js"></script>
+</body>
+</html>
