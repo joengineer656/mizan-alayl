@@ -3,7 +3,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
     // Replace these with the two user IDs shown on the site after first sign-in.
     function isMember() {
-      return request.auth != null && request.auth.uid in ['I6kb4c4EBuZXcfnDxtBAT7JMRGd2', 'UID_TWO'];
+      return request.auth != null && request.auth.uid in ['I6kb4c4EBuZXcfnDxtBAT7JMRGd2', '7knBofZkFheFZ5Q2Ag6Fgekmppq2'];
     }
     // Wider than the app's today/yesterday limit so every time zone and the 5:00 am day change still fit.
     function editable(date) {
